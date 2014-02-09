@@ -225,7 +225,7 @@ void Screen::render(){
 			glTranslatef(pos2, iSecret2 - 5, 0.0f);
 			drawobstacle();
 			glPopMatrix();
-			drawAxis();
+			//drawAxis();
 
 			SDL_GL_SwapWindow(win);
 

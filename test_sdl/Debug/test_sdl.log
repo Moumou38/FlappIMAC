@@ -1,4 +1,4 @@
-﻿La génération a démarré 09/02/2014 01:21:33.
+﻿La génération a démarré 09/02/2014 01:34:04.
      1>Projet "C:\Users\Moumou38\Documents\GitHub\FlappIMAC\test_sdl\test_sdl.vcxproj" sur le nœud 2 (Build cible(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\glm\glm /I"C:\SDL2-2.0.1\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\lib\src\Screen.cpp
@@ -17,4 +17,4 @@
 
 La génération a réussi.
 
-Temps écoulé 00:00:01.47
+Temps écoulé 00:00:02.09
