@@ -1,0 +1,31 @@
+﻿La génération a démarré 09/02/2014 23:37:21.
+     1>Projet "C:\Users\Moumou38\Documents\GitHub\FlappIMAC\test_sdl\test_sdl.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\glm\glm /I"C:\SDL2-2.0.1\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\lib\src\image.cpp ..\lib\src\Screen.cpp main.cpp
+         image.cpp
+         Screen.cpp
+     1>..\lib\src\Screen.cpp(115): warning C4305: 'argument' : troncation de 'double' à 'GLfloat'
+     1>..\lib\src\Screen.cpp(116): warning C4305: 'argument' : troncation de 'double' à 'GLfloat'
+     1>..\lib\src\Screen.cpp(117): warning C4305: 'argument' : troncation de 'double' à 'GLfloat'
+     1>..\lib\src\Screen.cpp(179): warning C4244: 'initialisation' : conversion de 'glm::length_t' en 'float', perte possible de données
+     1>..\lib\src\Screen.cpp(226): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+     1>..\lib\src\Screen.cpp(273): warning C4244: 'argument' : conversion de 'double' en 'float', perte possible de données
+     1>..\lib\src\Screen.cpp(327): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+     1>..\lib\src\Screen.cpp(332): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+     1>..\lib\src\Screen.cpp(337): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
+     1>..\lib\src\Screen.cpp(344): warning C4305: 'argument' : troncation de 'double' à 'GLfloat'
+     1>..\lib\src\Screen.cpp(385): warning C4244: 'argument' : conversion de 'float' en 'Uint32', perte possible de données
+     1>..\lib\src\Screen.cpp(488): warning C4244: 'argument' : conversion de 'float' en 'Uint32', perte possible de données
+         main.cpp
+         Génération de code en cours...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Release\test_sdl.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SDL2-2.0.1\lib\x86" SDL2.lib SDL2main.lib opengl32.lib glu32.lib SDL2_image.lib SDL2_ttf.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Release\test_sdl.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Release\test_sdl.lib" /MACHINE:X86 /SAFESEH Release\image.obj
+         Release\Screen.obj
+         Release\main.obj
+     1>LINK : warning LNK4075: ' /INCREMENTAL' ignoré à cause de la spécification '/OPT:ICF'
+         test_sdl.vcxproj -> C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Release\test_sdl.exe
+     1>Génération du projet "C:\Users\Moumou38\Documents\GitHub\FlappIMAC\test_sdl\test_sdl.vcxproj" terminée (Build cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:02.50

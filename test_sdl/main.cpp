@@ -1,7 +1,7 @@
 #include <iostream>
 #include "../lib/include/Screen.hpp"
 
-int main(int argc, char **argv){
+int main(int argc, char *argv[]){
 	int game = 0; 
 	int menu; 
 	int loop = 1; 
@@ -18,3 +18,4 @@ int main(int argc, char **argv){
 
 	return 0;
 }
+
