@@ -10,6 +10,7 @@ class Screen {
 		SDL_Window* win;
 	public:
 		Screen(int width, int height) ;
-		void render();
+		int render();
+		int menu(); 
 				
 };

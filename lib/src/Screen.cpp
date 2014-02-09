@@ -1,11 +1,13 @@
 #include "../include/Screen.hpp"
 #include "../include/object.h"
 #include "../include/image.h"
+#include "SDL_ttf.h" 
 #include <iostream> 
 #include <vector>
 #include <windows.h>
 #include <cmath>
 #include <stdlib.h>     /* srand, rand */
+#include <stdio.h>
 #include <time.h> 
 #include <gl/gl.h>
 #include <gl/glu.h>
@@ -99,6 +101,27 @@ void drawBox(GLuint tex) {
 	}
 
 
+void drawText(GLuint Tex)
+{
+
+	glEnable(GL_BLEND);
+	glEnable(GL_TEXTURE_2D);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBindTexture(GL_TEXTURE_2D, Tex);
+
+	glColor3ub(255, 255, 255);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex2f(-1, 1);
+	glTexCoord2f(0, 0.99); glVertex2f(-1, -1);
+	glTexCoord2f(0.99, 0.99); glVertex2f(1, -1);
+	glTexCoord2f(0.99, 0); glVertex2f(1, 1);
+	glEnd();
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_BLEND);
+	//printf("dessin!\n");
+}
+
 void drawobstacle(GLuint tex) {
 
 	glEnable(GL_TEXTURE_2D);
@@ -158,10 +181,22 @@ float gravity(glm::vec2 p1_pos, glm::vec2 p2_pos, float p1_mass, float p2_mass)
 }
 
 
-void Screen::render(){
+int Screen::render(){
 	
 		int loop = 1;
 		bool dead = false; 
+		// texte 
+		int scorenb = 0; 
+		SDL_Surface* score;
+		SDL_Color White = { 255, 255, 255 };
+		TTF_Font *police1 ;
+		GLuint scoreid;
+		TTF_Init();
+		police1 = TTF_OpenFont("../image/WaterPark.ttf", 40);
+		char tmp[10];
+		
+		
+
 		// Timing variables
 		Uint32 old_time, current_time;
 		float ftime;
@@ -217,7 +252,7 @@ void Screen::render(){
 
 			/*flapping bird */
 			if (up == true && plane == false) { //fly
-				ball.add_force(glm::vec2(0.f, 15.81f), ftime);
+				ball.add_force(glm::vec2(0.f, 18.81f), ftime);
 				cpt += ftime;
 				if (cpt > 0.3) {
 					up = false;
@@ -247,20 +282,23 @@ void Screen::render(){
 			/* hit obstacle */
 			if (ball.pos.x * 10+ 0.4 >= pos-0.5 && //collision left
 				ball.pos.x * 10 - 0.4 <= pos + 0.5 &&  //collision right
-				(ball.pos.y * 10 + 0.3 >= iSecret - 2 || //top collision  (path height = 6)
+				(ball.pos.y * 10 + 0.5 >= iSecret - 2 || //top collision  (path height = 6)
 				ball.pos.y * 10 - 0.3 <= iSecret - 7)) dead = true;
 
 			if (ball.pos.x * 10 + 0.4 >= pos2 - 0.5 && //collision left
 				ball.pos.x * 10 - 0.4 <= pos2 + 0.5 &&  //collision right
-				(ball.pos.y * 10 + 0.3 >= iSecret2 - 2 || //top collision  (path height = 6)
+				(ball.pos.y * 10 + 0.5 >= iSecret2 - 2 || //top collision  (path height = 6)
 				ball.pos.y * 10 - 0.3 <= iSecret2 - 7)) dead = true;
 
 			if (ball.pos.x * 10 + 0.4 >= pos3 - 0.5 && //collision left
 				ball.pos.x * 10 - 0.4 <= pos3 + 0.5 &&  //collision right
-				(ball.pos.y * 10 + 0.3 >= iSecret3 - 2 || //top collision  (path height = 6)
+				(ball.pos.y * 10 + 0.5 >= iSecret3 - 2 || //top collision  (path height = 6)
 				ball.pos.y * 10 - 0.3 <= iSecret3 - 7)) dead = true;
 
-
+			if (fabs(ball.pos.x - pos) < 0.09 || fabs(ball.pos.x - pos2) < 0.09 || fabs(ball.pos.x - pos3) < 0.09 ) scorenb++;
+			sprintf_s(tmp, "%d", scorenb); 
+			score = TTF_RenderText_Blended(police1,tmp, White);
+			scoreid = loadTexture(score);
 
 			/*this is where we draw */
 			glClearColor(0, 0, 0, 0);
@@ -300,6 +338,12 @@ void Screen::render(){
 			drawobstacle(obstacleTexid);
 			glPopMatrix();
 			//drawAxis();
+
+			glPushMatrix();
+			glTranslatef(0., 7., 0.0f);
+			glScalef(0.6, 0.6, 1);
+			drawText(scoreid);
+			glPopMatrix();
 
 			SDL_GL_SwapWindow(win);
 
@@ -342,10 +386,113 @@ void Screen::render(){
 			} 
 			if (dead) loop = 0;
 		}
-		SDL_Quit();
+		return 0; // SDL_Quit();
 
 			
 
 } 
+
+int Screen::menu(){
+
+	int loop = 1;
+	int choice = 0;
+	int xClicked = 0, yClicked = 0;
+	// Timing variables
+	Uint32 old_time, current_time;
+	float ftime;
+	//flying process
+	
+
+	//background 
+	SDL_Surface* bgTex = loadImage("../image/bg.png");
+	GLuint bgTexid = loadTexture(bgTex);
+
+	//background 
+	SDL_Surface* menuTex = loadImage("../image/menu.png");
+	GLuint menuTexid = loadTexture(menuTex);
+
+
+	current_time = SDL_GetTicks(); // Need to initialize this here for event loop to work
+	while (loop){
+
+		/*setting time*/
+		old_time = current_time;
+		current_time = SDL_GetTicks();
+		ftime = (current_time - old_time) / 1000.0f;
+
+		
+
+		/*this is where we draw */
+		glClearColor(0, 0, 0, 0);
+
+		glClear(GL_COLOR_BUFFER_BIT);  // Clear the color buffer
+		glMatrixMode(GL_MODELVIEW);    // To operate on the model-view matrix
+		glLoadIdentity();              // Reset model-view matrix
+
+		glPushMatrix();
+		glScalef(20, 10, 1);
+		drawBox(bgTexid);
+		glPopMatrix();
+
+		glPushMatrix();
+		glScalef(10, 10, 1);
+		drawBox(menuTexid);
+		glPopMatrix();
+
+
+		SDL_GL_SwapWindow(win);
+
+
+		SDL_Event e;
+		while (SDL_PollEvent(&e)) {
+			switch (e.type) {
+			case SDL_QUIT:
+				loop = 0;
+				break;
+
+			case SDL_MOUSEBUTTONDOWN:
+				if (e.button.button == SDL_BUTTON_LEFT)
+				{
+					xClicked = e.button.x;
+					yClicked = e.button.y;
+					std::cout << xClicked << " " << yClicked << std::endl;
+					if (xClicked >= 288 && xClicked <= 450 && yClicked >= 425 && yClicked <= 589) { choice = 1; loop = 0; }
+					if (xClicked >= 295 && xClicked <= 462 && yClicked >= 610 && yClicked <= 665) { choice = 0; loop = 0; }
+					// 288 - 425    450  - 589
+					// 295 - 610	462 - 665
+				}
+				
+				break;
+			case SDL_MOUSEBUTTONUP:
+
+				break;
+			case SDL_KEYDOWN:
+				switch (e.key.keysym.sym){
+				case SDLK_q:
+					choice = 0; 
+					loop = 0;
+					break;
+
+				default:
+					break;
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
+
+
+		if (ftime < FRAMERATE_MILLISECONDS) {
+			SDL_Delay(FRAMERATE_MILLISECONDS - ftime);
+		}
+		
+	}
+	return choice; // SDL_Quit();
+
+
+
+}
 
 
