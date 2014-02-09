@@ -10,8 +10,8 @@
 #include <gl/glu.h>
 #include <glm.hpp>
 
-static const Uint32 FRAMERATE_MILLISECONDS = 1000 / 60; 
 
+static const Uint32 FRAMERATE_MILLISECONDS = 1000 / 60; 
 
 	Screen::Screen(int width, int height){
 		if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
@@ -195,9 +195,17 @@ void Screen::render(){
 			ball.pos = ball.vel * ftime; 
 			
 			/* hit obstacle */
-			if (fabs(ball.pos.x * 10 - pos) < 0.1f) std::cout << "HIT 1" << std::endl;
+			if (ball.pos.x * 10 >= pos-0.5 && //collision left
+				ball.pos.x * 10 <= pos+0.5 &&  //collision right
+				(ball.pos.y * 10 >= iSecret-2 || //top collision  (path height = 6)
+				ball.pos.y * 10 <= iSecret - 7)) std::cout << "HIT 1" << std::endl;
 
-			if (fabs(ball.pos.x * 10 - pos2) < 0.1f) std::cout << "HIT 2" << std::endl;
+			if (ball.pos.x * 10 >= pos2 - 0.5 && //collision left
+				ball.pos.x * 10 <= pos2 + 0.5 &&  //collision right
+				(ball.pos.y * 10 >= iSecret2 - 2 || //top collision  (path height = 6)
+				ball.pos.y * 10 <= iSecret2 - 7)) std::cout << "HIT 2" << std::endl;
+
+			// if (fabs(ball.pos.x * 10 - pos2) < 0.1f) std::cout << "HIT 2" << std::endl;
 
 
 

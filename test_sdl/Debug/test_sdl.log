@@ -1,20 +1,12 @@
-﻿La génération a démarré 09/02/2014 01:34:04.
+﻿La génération a démarré 09/02/2014 11:47:33.
      1>Projet "C:\Users\Moumou38\Documents\GitHub\FlappIMAC\test_sdl\test_sdl.vcxproj" sur le nœud 2 (Build cible(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\glm\glm /I"C:\SDL2-2.0.1\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\lib\src\Screen.cpp
-         Screen.cpp
-     1>c:\users\moumou38\documents\github\flappimac\lib\src\screen.cpp(120): warning C4244: 'initialisation' : conversion de 'glm::length_t' en 'float', perte possible de données
-     1>c:\users\moumou38\documents\github\flappimac\lib\src\screen.cpp(145): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-     1>c:\users\moumou38\documents\github\flappimac\lib\src\screen.cpp(188): warning C4244: 'argument' : conversion de 'double' en 'float', perte possible de données
-     1>c:\users\moumou38\documents\github\flappimac\lib\src\screen.cpp(221): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-     1>c:\users\moumou38\documents\github\flappimac\lib\src\screen.cpp(225): warning C4244: 'argument' : conversion de 'int' en 'GLfloat', perte possible de données
-     1>c:\users\moumou38\documents\github\flappimac\lib\src\screen.cpp(267): warning C4244: 'argument' : conversion de 'float' en 'Uint32', perte possible de données
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Debug\test_sdl.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SDL2-2.0.1\lib\x86" SDL2.lib SDL2main.lib opengl32.lib glu32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Debug\test_sdl.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Debug\test_sdl.lib" /MACHINE:X86 Debug\Screen.obj
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Debug\test_sdl.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SDL2-2.0.1\lib\x86" SDL2.lib SDL2main.lib opengl32.lib glu32.lib SDL2_image.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Debug\test_sdl.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Debug\test_sdl.lib" /MACHINE:X86 Debug\image.obj
+         Debug\Screen.obj
          Debug\main.obj
          test_sdl.vcxproj -> C:\Users\Moumou38\Documents\GitHub\FlappIMAC\Debug\test_sdl.exe
      1>Génération du projet "C:\Users\Moumou38\Documents\GitHub\FlappIMAC\test_sdl\test_sdl.vcxproj" terminée (Build cible(s)).
 
 La génération a réussi.
 
-Temps écoulé 00:00:02.09
+Temps écoulé 00:00:00.48
