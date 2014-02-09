@@ -1,5 +1,7 @@
 #pragma once
+#include <windows.h>
 #include <glm.hpp>
+#include <gl/glu.h>
 
 class object {
 
@@ -11,6 +13,7 @@ class object {
 public : 
 	glm::vec2 pos; 
 	glm::vec2 vel; 
+	GLuint tex;
 	float mass;
 	object(glm::vec2 pos, glm::vec2 vel, float mass) : pos(pos), vel(vel), mass(mass) {};
 	object() : pos((0.f,0.f)), vel((0.f,0.f)), mass(0.25f) {} ;

@@ -10,6 +10,7 @@
 #include <gl/glu.h>
 
 
+
 GLuint loadTexture(SDL_Surface* tex);
 
 SDL_Surface* loadImage(const char* image);
