@@ -187,7 +187,7 @@ int Screen::render(){
 		bool dead = false; 
 		// texte 
 		int scorenb = 0; 
-		SDL_Surface* score;
+		SDL_Surface* score = nullptr;
 		SDL_Color White = { 255, 255, 255 };
 		TTF_Font *police1 ;
 		GLuint scoreid;
@@ -215,6 +215,8 @@ int Screen::render(){
 		object ball; // piou piou 
 		SDL_Surface* ballTex = loadImage("../image/boule.png");
 		ball.tex = loadTexture(ballTex);
+
+		
 
 		glm::vec2 earth(0., -15); // earth position to set gravity
 
@@ -282,18 +284,18 @@ int Screen::render(){
 			/* hit obstacle */
 			if (ball.pos.x * 10+ 0.4 >= pos-0.5 && //collision left
 				ball.pos.x * 10 - 0.4 <= pos + 0.5 &&  //collision right
-				(ball.pos.y * 10 + 0.5 >= iSecret - 2 || //top collision  (path height = 6)
-				ball.pos.y * 10 - 0.3 <= iSecret - 7)) dead = true;
+				(ball.pos.y * 10 + 1 >= iSecret - 2 || //top collision  (path height = 6)
+				ball.pos.y * 10  <= iSecret - 7)) dead = true;
 
 			if (ball.pos.x * 10 + 0.4 >= pos2 - 0.5 && //collision left
 				ball.pos.x * 10 - 0.4 <= pos2 + 0.5 &&  //collision right
-				(ball.pos.y * 10 + 0.5 >= iSecret2 - 2 || //top collision  (path height = 6)
-				ball.pos.y * 10 - 0.3 <= iSecret2 - 7)) dead = true;
+				(ball.pos.y * 10 + 1 >= iSecret2 - 2 || //top collision  (path height = 6)
+				ball.pos.y * 10 <= iSecret2 - 7)) dead = true;
 
 			if (ball.pos.x * 10 + 0.4 >= pos3 - 0.5 && //collision left
 				ball.pos.x * 10 - 0.4 <= pos3 + 0.5 &&  //collision right
-				(ball.pos.y * 10 + 0.5 >= iSecret3 - 2 || //top collision  (path height = 6)
-				ball.pos.y * 10 - 0.3 <= iSecret3 - 7)) dead = true;
+				(ball.pos.y * 10 + 1 >= iSecret3 - 2 || //top collision  (path height = 6)
+				ball.pos.y * 10  <= iSecret3 - 7)) dead = true;
 
 			if (fabs(ball.pos.x - pos) < 0.09 || fabs(ball.pos.x - pos2) < 0.09 || fabs(ball.pos.x - pos3) < 0.09 ) scorenb++;
 			sprintf_s(tmp, "%d", scorenb); 
@@ -386,6 +388,11 @@ int Screen::render(){
 			} 
 			if (dead) loop = 0;
 		}
+		glFlush();
+		SDL_FreeSurface(score);
+		SDL_FreeSurface(bgTex);
+		SDL_FreeSurface(obstacleTex);
+		TTF_CloseFont(police1);
 		return 0; // SDL_Quit();
 
 			
@@ -489,6 +496,9 @@ int Screen::menu(){
 		}
 		
 	}
+	glFlush();
+	SDL_FreeSurface(bgTex);
+	SDL_FreeSurface(menuTex);
 	return choice; // SDL_Quit();
 
 
